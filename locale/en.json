@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Session deletion",
+    "description": "Adds session deletion to the sidebar session menu: single and batch, each gated by a deletability probe and an acknowledgement dialog. Deleting removes the session log, its workspace accounting, its pin and archive records, and its projection-cache checkpoint. DSH ships archive but no delete."
+  }
+}

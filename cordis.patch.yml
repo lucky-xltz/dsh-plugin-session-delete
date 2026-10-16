@@ -1,0 +1,19 @@
+# dsh-plugin-session-delete bundle patch.
+#
+# Applied over the dsh-web-app layer. This bundle contributes ONE host row (the
+# plugin that owns the delete routes) and relies on its `dsh.client` manifest
+# (in package.json) to load the browser half that adds the sidebar menu entry
+# and its confirmation dialog.
+#
+# A patch replaces the targeted row's whole `config`, so only an additive
+# `insert` row appears here (we never override a shipped row).
+
+- insert:
+    # Host half: checks whether one session may be deleted, then deletes it —
+    # its workspace accounting, pin/archive records, projection-cache
+    # checkpoint, and finally its on-disk log directory.
+    # `webServer` is a hard dependency (`inject = ['webServer', …]` in
+    # lib/index.js), so a headless profile without an HTTP server does not load
+    # this bundle at all.
+    - id: session-delete
+      name: 'dsh-plugin-session-delete'
